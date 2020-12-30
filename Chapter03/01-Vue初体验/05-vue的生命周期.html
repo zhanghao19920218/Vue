@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            beforeMount() {
+                console.log("正在挂载")
+            },
+            mounted() {
+                console.log("已经挂载")
+            },
+            created() {
+                console.log("创建成功")
+            },
+            beforeCreate: function() {
+                console.log("在创建之前");
+            },
+            beforeDestroy() {
+                console.log("销毁之前");
+            },
+        });
+    </script>
+</body>
+</html>
