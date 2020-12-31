@@ -7,7 +7,7 @@
 
 ### MVVM
 1. Model通过Data Binding将数据和View连接显示
-2. View通过DOM Listenter数据更新来更新model
+2. View通过DOM Listener数据更新来更新model
 3. View - ViewModel - Model
 
 ### 创建Vue实例传入的options

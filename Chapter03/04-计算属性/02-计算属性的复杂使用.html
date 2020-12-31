@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <book-item v-for="item in books" :book-name="item.name" :key="item.id"></book-item>
+  </ul>
+  <p>总价格: {{totalPrice}}</p>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  Vue.component(
+      'book-item',
+      {
+        props: ['bookName'],
+        template: "<li>{{ bookName }}</li>"
+      }
+  )
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      books: [
+        {id: 110, name: 'Unix编程艺术', price: 119},
+        {id: 111, name: '代码大全', price: 105},
+        {id: 112, name: '深入理解计算机原理', price: 98},
+        {id: 113, name: '现代操作系统', price: 87},
+      ]
+    },
+    //计算属性
+    computed: {
+      totalPrice: function () {
+        //获取价格
+        let basePrice = 0;
+        for (let item of this.books) {
+          basePrice += item.price
+        }
+        return basePrice;
+      }
+    }
+  });
+</script>
+</body>
+</html>
