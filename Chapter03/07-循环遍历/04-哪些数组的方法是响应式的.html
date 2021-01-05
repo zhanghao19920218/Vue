@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="(item, index) in letters" :key="index">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+<script src="../js/vue.js"></script>
+<script >
+  const app = new Vue({
+    el: '#app',
+    data: {
+      letters: ['A', 'B', 'C', 'D']
+    },
+    methods: {
+      btnClick() {
+        // 1. push方法
+        // this.letters.push('aaa');
+
+        // 2.通过索引数组
+        this.letters[0] = 'bbbbb';
+
+
+      }
+    }
+  });
+
+  // function sum(...nums) {
+  //   console.log(nums);
+  //   let total = 0;
+  //   for (let item of nums) {
+  //     total += parseInt(item);
+  //   }
+  //   return total;
+  // }
+  // let result = sum(11, 11, 12, 13);
+  // console.log(result);
+</script>
+
+</body>
+</html>

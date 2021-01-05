@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--  无下标-->
+  <ul>
+    <li v-for="item in names">{{item}}</li>
+  </ul>
+  <!--   有下标-->
+  <ul>
+    <li v-for="(item, index) in names">{{index}} - {{item}}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      names: ['why', 'kobe', 'james', 'curry'],
+      message: 'Hello Vue'
+    }
+  });
+</script>
+
+</body>
+</html>
