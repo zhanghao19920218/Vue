@@ -32,17 +32,38 @@ const app = new Vue({
       },
     ]
   },
+  filters: {
+    showPrice(price) {
+      return `¥${price.toFixed(2)}`;
+    }
+  },
+  computed: {
+    totalPrices() {
+      let totalPrice = 0;
+      this.books.forEach((value, number, _) => {
+        totalPrice += (value.count * value.price);
+      })
+      return totalPrice;
+    }
+  },
   methods: {
     increment(index) {
       this.books[index].count++;
     },
     decrement(index) {
       this.books[index].count > 1 ? this.books[index].count-- : 1;
+    },
+    removeHandler(index) {
+      //删除一行
+      this.books.splice(index, 1);
     }
   },
-  filters: {
-    showPrice(price) {
-      return `¥${price.toFixed(2)}`;
-    }
-  }
 });
+
+//编程范式: 命令式编程/声明式编程/
+// 面向对象编程(第一公民: 对象)/函数式编程(第一公民: 函数)
+const nums = [10, 20, 111, 222, 444, 40, 50];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+const result = nums.filter(value =>  value < 100 ).map(value => value * 2).reduce(reducer);
+console.log(result);

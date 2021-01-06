@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<ul>
+  <list-item v-for="item in students" :key="item.id" :age="item.age" :name="item.name"></list-item>
+</ul>
+</div>
+
+<template id="list-item">
+<li>
+  年龄: {{age}}, 姓名: {{name}}, 爱好: {{hobbies}}
+</li>
+</template>
+<script src="../js/vue.js"></script>
+<script >
+  //1.全局定义
+  Vue.component(
+      'list-item',
+      {
+        template: '#list-item',
+        // props: ['age', 'name']
+        props: {
+          age: Number,
+          name: {
+            type: String,
+            default: '佚名',
+            required: true
+          },
+          hobbies: {
+            type: Array,
+            default() {
+              return ['足球', '羽毛球', '乒乓球'];
+            }
+          }
+        }
+      }
+  );
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      students: [
+        {
+          id: 1,
+          name: '小明',
+          age: 23
+        },
+        {
+          id: 2,
+          name: '小王',
+          age: 21
+        },
+        {
+          id: 3,
+          name: '小赵',
+          age: 25
+        }
+      ]
+    }
+  })
+</script>
+
+</body>
+</html>

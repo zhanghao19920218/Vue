@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <calculator></calculator>
+</div>
+<div id="app-2">
+  <calculator></calculator>
+</div>
+
+<template id="calculator">
+  <div>
+    <h2>当前计数：{{counter}}</h2>
+    <button @click="increment">+</button> <button @click="decrement">-</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script >
+  const obj = {
+    counter: 0
+  }
+
+  //1. 注册组件(全局组件)
+  Vue.component(
+      'calculator',
+      {
+        template: '#calculator',
+        data() {
+          return {
+            counter: 0
+          }
+        },
+        methods: {
+          increment() {
+            this.counter++;
+          },
+          decrement() {
+            this.counter--;
+          }
+        }
+      }
+  )
+
+  const app = new Vue({
+    el: '#app'
+  });
+
+  const app2 = new Vue({
+    el: '#app-2'
+  });
+</script>
+
+<script >
+  function abc() {
+    return {
+      name: 'why',
+      age: 18
+    }
+  }
+  let obj1 = abc();
+  let obj2 = abc();
+  let obj3 = abc();
+
+  obj1.name = 'kobe';
+  console.log(obj2);
+  console.log(obj3);
+
+</script>
+
+</body>
+</html>

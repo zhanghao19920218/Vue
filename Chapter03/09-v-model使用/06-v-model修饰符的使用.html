@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--  1. 修饰符: lazy-->
+  <label for="2">
+    <input type="text" v-model.lazy="message" id="2">
+  </label>
+  <h2>{{message}}</h2>
+
+  <!--  2. 修饰符number-->
+  <label for="username">
+    <input id="username" type="number" v-model.number="age">
+  </label>
+  <h2>{{typeof (age)}}</h2>
+
+  <!--  3. 修饰符: trim-->
+  <label for="trim">
+    <input type="text" id="trim" v-model.trim="username">
+  </label>
+  <h2>您输入的文字: {{ username }}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue',
+      age: 0,
+      username: ' Mason Schdmit '
+    }
+  });
+</script>
+</body>
+</html>

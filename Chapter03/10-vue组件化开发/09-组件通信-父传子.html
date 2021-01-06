@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<ul>
+  <list-item v-for="(item, index) in students" :key="index" :user-name="item"></list-item>
+</ul>
+</div>
+
+<template id="list-item">
+  <li>用户名称: {{userName}}</li>
+</template>
+<script src="../js/vue.js"></script>
+<script >
+  Vue.component(
+      'list-item',
+      {
+        template: '#list-item',
+        props: {
+          userName: String
+        }
+      },
+  )
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      students: ['小王', '小明', '小赵']
+    }
+  })
+</script>
+
+</body>
+</html>
