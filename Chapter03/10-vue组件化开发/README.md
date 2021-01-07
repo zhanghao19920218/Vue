@@ -60,3 +60,29 @@
 
 ### props驼峰标识
 1. user-name的标签修改为userName
+
+### 必须包含根组件
+1. 树结构必须包括一个根组件
+2. 组件必须有root-element
+
+### 子传父
+1. 不能使用驼峰
+2. 发射事件: 自定义事件
+```vue
+      btnClick(item) {
+        this.$emit('item-click', item)
+      }
+```
+
+#### props里面数据不要变动
+1. 使用watch函数
+
+### 父子组件的访问方式: $children
+1. 父组件访问子组件：使用$children或$ref
+2. 子组件访问父组件: 使用$parent
+3. $ref默认为空
+4. $refs => 对象类型, 默认是一个空的对象
+
+### 子访问父组件方式: $root
+1. this.$root => 访问根组件
+2. this.$parent => 访问父组件

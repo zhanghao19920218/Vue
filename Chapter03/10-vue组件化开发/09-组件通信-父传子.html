@@ -22,7 +22,11 @@
       {
         template: '#list-item',
         props: {
-          userName: String
+          userName: {
+            type: String,
+            default: 'Mason',
+            required: true
+          }
         }
       },
   )

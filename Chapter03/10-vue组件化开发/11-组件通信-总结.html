@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <child-cpn @increment="increment" @decrement="decrement"></child-cpn>
+  <h2>{{total}}</h2>
+</div>
+
+<template id="childCpn">
+  <div>
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script >
+  const childCpn = {
+    template: '#childCpn',
+    methods: {
+      increment() {
+        this.$emit('increment');
+      },
+      decrement() {
+        this.$emit('decrement');
+      }
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      total: 0
+    },
+    components: {
+      'child-cpn': childCpn
+    },
+    methods: {
+      increment() {
+        this.total++;
+      },
+      decrement() {
+        this.total--;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

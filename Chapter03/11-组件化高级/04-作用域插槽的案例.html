@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn>
+  </cpn>
+  <cpn>
+    <!--    目的是获取子组件中的pLanguages-->
+    <template slot-scope="slot">
+      <ul>
+        <li v-for="item in slot.data">{{item}}</li>
+        <li>新增</li>
+      </ul>
+    </template>
+  </cpn>
+</div>
+<template id="cpn">
+  <div>
+    <slot v-bind:data="pLanguages">
+      <ul>
+        <li v-for="(language, index) in pLanguages" :key="index">{{language}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue',
+      books: ['鲁滨逊漂流记', '少年维特之烦恼', '简爱'],
+      pLanguages: ['Swift', 'Objective-C', 'Dart']
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            pLanguages: ['C++', 'Python', 'JavaScript', 'Swift', 'Objective-C', 'Dart']
+          }
+        }
+      },
+    }
+  });
+</script>
+
+</body>
+</html>

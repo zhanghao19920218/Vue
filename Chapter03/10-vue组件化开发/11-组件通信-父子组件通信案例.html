@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn :num1="num1" @change_num="changeNew"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h2>{{default_num}}</h2>
+    <input type="number" v-model.number="default_num">
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue',
+      num1: 13,
+      num2: 0
+    },
+    methods: {
+      changeNew(newValue) {
+        console.log(newValue);
+      }
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            default_num: this.num1 //默认的number
+          }
+        },
+        watch: {
+          default_num(newValue) {
+            this.default_num = newValue;
+            this.$emit('change_num', newValue);
+          }
+        },
+        // computed: {
+        //   default_num: {
+        //     get(){
+        //       // this.$emit('change_num', this.num1);
+        //       return 0;
+        //     },
+        //     set(newValue){
+        //       this.$emit('change_num', newValue);
+        //       // this.default_num = newValue;
+        //       // this.num1 = newValue;
+        //     }
+        //   }
+        // },
+        props: {
+          num1: {
+            type: Number,
+            default: this.num1,
+            required: true
+          }
+        }
+      }
+    }
+  }
+    );
+</script>
+
+</body>
+</html>
