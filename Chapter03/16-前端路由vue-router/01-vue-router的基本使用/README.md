@@ -29,3 +29,79 @@ SPA: Single Page Application
 前端路由: 根据/后面进行页面资源抽取(只有一套html+css+js)
 * SPA不要进行页面重新请求
 
+##### 修改页面不进行刷新
+* hash修改: location.hash = 'aaa',不会进行页面刷新
+* href -> hyper reference 超链接
+* hash表 => 路由映射 => 监听修改
+
+##### HTML5的history模式修改也不会进行页面刷新: pushState, back
+```javascript
+history.pushState({}, '', 'home');
+history.pushState({}, '', 'about');
+history.back(); //返回上一个浏览地址
+history.pushState({}, '', 'demo');
+history.back();
+```
+数据结构栈结构中用的很多(先进后出)
+
+##### HTML5的history模式: replaceState
+```javascript
+location.href
+history.replaceState({}, '', '/foo');
+location.href
+history.replaceState({}, '', '/foo/bar')
+location.href
+```
+
+##### HTML5的history模式: go和forward
+```javascript
+history.go(-1) = history.back();
+history.forward()
+history.back()
+```
+
+#### 配置vue-router的index文件
+```javascript
+// 配置路由相关的信息
+import VueRouter from 'vue-router';
+import Vue from 'vue';
+
+// 1.通过Vue.use(插件)，安装插件
+Vue.use(VueRouter);
+
+// 2.创建VueRouter对象
+const routes = [
+  // 配置路由和组件之间的应用关系
+
+];
+const router = new VueRouter({
+  // 配置路由和组件之间的应用关系
+  routes
+});
+
+// 3. 将router对象传入到vue实例
+export default router;
+```
+
+#### 使用vue-router的步骤:
+* 第一步: 创建路由组件
+* 第二步: 配置路由映射: 组件和路径映射关系
+* 第三步: 使用路由: <router-link>和<router-view>
+
+#### 使用vue-router注意:
+* 使用vue-router中, 进行默认的路由地址
+```javascript
+{
+  path: '',
+  redirect: '/home'
+}
+```
+* 在router添加mode: 'history'
+
+#### <router-link>的属性
+* <router-link>默认渲染成<a>
+* <router-link to="/home" tag="button">渲染成<button>
+```vue
+<router-link to="/home" tag="button">按钮</router-link>
+```
+* replace: 修改成replaceState和pushState区别
